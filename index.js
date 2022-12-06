@@ -23,7 +23,7 @@ const flashcardSchema = new mongoose.Schema({
 });
 
 // Creates a new mongoose.model with "Confession" as the name, using the confessionSchema we just created.
-const Flashcard = mongoose.model("Flashcard", flashcardSchema);
+const Flashcard = new mongoose.model(flashcardSchema, "Flashcard");
 
 // Modified POST route to add a new document to our database. Save the confession into our database. 
 app.post("/new", async (req, res) => {
