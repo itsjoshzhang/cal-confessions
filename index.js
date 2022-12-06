@@ -22,7 +22,7 @@ const confessionSchema = new mongoose.Schema({
     back: String
 });
 
-// Creates a new mongoose.model with "Confession" as the name, using the flashpostSchema we just created.
+// Creates a new mongoose.model with "Confession" as the name, using the confessionSchema we just created.
 const Confession = mongoose.model("Confession", confessionSchema);
 
 // Modified POST route to add a new document to our database. Save the confession into our database. 
