@@ -34,21 +34,21 @@ app.post("/new", async (req, res) => {
 
 // Uses a method in Mongoose to find all the posts we have in our database. 
 app.get("/cards", async (req, res) => {
-    const foundCards = await Flashcard.find();
+    const foundCards = await newCard.find();
     return res.send(foundCards)
 })
 
 // Uses a method in Mongoose to find a post by its ID. 
 app.get("/card/:id", async (req, res) => {
     let id = req.params.id
-    const foundCard = await Flashcard.findById(id);
+    const foundCard = await newCard.findById(id);
     return res.send(foundCard)
 })
 
 // Uses a method in Mongoose to delete a post by its ID. 
 app.get("/delete/:id", async (req, res) => {
     let id = req.params.id
-    const foundCard = await Flashcard.findByIdAndDelete(id);
+    const foundCard = await newCard.findByIdAndDelete(id);
     return res.send(foundCard)
 })
 
