@@ -17,39 +17,39 @@ async function connect() {
 }
 
 // Creates a new mongoose.Schema with the front as a String and the back as a String. 
-const confessionSchema = new mongoose.Schema({
+const flashcardSchema = new mongoose.Schema({
     front: String,
     back: String
 });
 
 // Creates a new mongoose.model with "Confession" as the name, using the confessionSchema we just created.
-const Confession = mongoose.model("Confession", confessionSchema);
+const Flashcard = mongoose.model("Flashcard", flashcardSchema);
 
 // Modified POST route to add a new document to our database. Save the confession into our database. 
 app.post("/new", async (req, res) => {
-    const newPost = new Confession({front:req.body.front, back:req.body.back});
-    await newPost.save()
-    return res.send(newPost)
+    const newCard = new Flashcard({front:req.body.front, back:req.body.back});
+    await newCard.save()
+    return res.send(newCard)
 })
 
 // Uses a method in Mongoose to find all the posts we have in our database. 
-app.get("/posts", async (req, res) => {
-    const foundAllPosts = await Confession.find();
-    return res.send(foundAllPosts)
+app.get("/cards", async (req, res) => {
+    const foundCards = await Flashcard.find();
+    return res.send(foundCards)
 })
 
 // Uses a method in Mongoose to find a post by its ID. 
-app.get("/post/:id", async (req, res) => {
+app.get("/card/:id", async (req, res) => {
     let id = req.params.id
-    const foundPost = await Confession.findById(id);
-    return res.send(foundPost)
+    const foundCard = await Flashcard.findById(id);
+    return res.send(foundCard)
 })
 
 // Uses a method in Mongoose to delete a post by its ID. 
 app.get("/delete/:id", async (req, res) => {
     let id = req.params.id
-    const foundPost = await Confession.findByIdAndDelete(id);
-    return res.send(foundPost)
+    const foundCard = await Flashcard.findByIdAndDelete(id);
+    return res.send(foundCard)
 })
 
 app.listen(3000, () => {
