@@ -16,31 +16,31 @@ async function connect() {
   await mongoose.connect('mongodb+srv://calconfessions:calconfessions@calconfessions.r6kz7bf.mongodb.net/test')
 }
 
-const flashcardSchema = new mongoose.Schema({
+const confessionSchema = new mongoose.Schema({
   front: String,
   back: String
 });
 
-const Flashcard = mongoose.model('Flashcard', flashcardSchema)
+const Confession = mongoose.model('Confession', confessionSchema)
 
 app.post("/new", async (req, res) => {
-    const newCard = new Flashcard({front:req.body.front, back:req.body.back});
+    const newCard = new Confession({front:req.body.front, back:req.body.back});
     await newCard.save()
     return res.send(newCard)
 })
 
 app.get("/cards", async (req, res) => {
-    const foundCards = await Flashcard.find()
+    const foundCards = await Confession.find()
     return res.send(foundCards)
 })
 
 app.get("/card/:id", async (req, res) => {
-    const foundCard = await Flashcard.findById(req.params.id)
+    const foundCard = await Confession.findById(req.params.id)
     return res.send(foundCard)
 })
 
 app.get("/delete/:id", async (req, res) => {
-    const foundCard = await Flashcard.findByIdAndDelete(req.params.id)
+    const foundCard = await Confession.findByIdAndDelete(req.params.id)
     return res.send(foundCard)
 })
 
