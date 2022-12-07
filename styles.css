@@ -77,6 +77,13 @@ button{
     text-align: center;
 }
 
+#newFrontCard{
+    width: 100px;
+}
+
+#newBackCard{
+    width: 350px;
+}
 .heart-like-button {
     position: relative;
     width: 160px;
