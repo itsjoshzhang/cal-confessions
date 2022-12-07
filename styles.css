@@ -11,8 +11,9 @@ body {
 }
 img {
     border-radius: 50%;
-    width: 250px;
-    height: 200px;
+    border: 2px solid black;
+    width: 195px;
+    height: 170px;
     margin-left: auto;
     margin-right: auto;
 }
