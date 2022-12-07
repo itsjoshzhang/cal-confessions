@@ -16,32 +16,32 @@ async function connect() {
   await mongoose.connect('mongodb+srv://calconfessions:calconfessions@calconfessions.r6kz7bf.mongodb.net/test')
 }
 
-const flashcardSchema = new mongoose.Schema({
+const confessonSchema = new mongoose.Schema({
   front: String,
   back: String
 });
 
-const Flashcard = mongoose.model('Flashcard', flashcardSchema)
+const Confesson = mongoose.model('Confesson', confessonSchema)
 
 app.post("/new", async (req, res) => {
-    const newCard = new Flashcard({front:req.body.front, back:req.body.back});
-    await newCard.save()
-    return res.send(newCard)
+    const newPost = new Confesson({front:req.body.front, back:req.body.back});
+    await newPost.save()
+    return res.send(newPost)
 })
 
-app.get("/cards", async (req, res) => {
-    const foundCards = await Flashcard.find()
-    return res.send(foundCards)
+app.get("/posts", async (req, res) => {
+    const foundPosts = await Confesson.find()
+    return res.send(foundPosts)
 })
 
-app.get("/card/:id", async (req, res) => {
-    const foundCard = await Flashcard.findById(req.params.id)
-    return res.send(foundCard)
+app.get("/post/:id", async (req, res) => {
+    const foundPost = await Confesson.findById(req.params.id)
+    return res.send(foundPost)
 })
 
 app.get("/delete/:id", async (req, res) => {
-    const foundCard = await Flashcard.findByIdAndDelete(req.params.id)
-    return res.send(foundCard)
+    const foundPost = await Confesson.findByIdAndDelete(req.params.id)
+    return res.send(foundPost)
 })
 
 app.listen(3000, () => {

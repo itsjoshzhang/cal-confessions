@@ -1,95 +1,95 @@
-frontCard = document.getElementById("frontCard")
-backCard = document.getElementById("backCard")
+frontPost = document.getElementById("frontPost")
+backPost = document.getElementById("backPost")
 submitBtn = document.getElementById("submit")
 nextBtn = document.getElementById("next")
 prevBtn = document.getElementById("prev")
 deleteBtn = document.getElementById("delete")
 revealBtn = document.getElementById("reveal")
 randomBtn = document.getElementById("randomize")
-newFrontCard = document.getElementById("newFrontCard")
-newBackCard = document.getElementById("newBackCard")
+newFrontPost = document.getElementById("newFrontPost")
+newBackPost = document.getElementById("newBackPost")
 
 localUrl = "http://localhost:3000"
 
 submitBtn.addEventListener("click", async function () {
-    await addCard(newFrontCard.value, newBackCard.value)
-    allCards = await getCards()
-    newFrontCard.value = ""
-    newBackCard.value = ""
+    await addPost(newFrontPost.value, newBackPost.value)
+    allPosts = await getPosts()
+    newFrontPost.value = ""
+    newBackPost.value = ""
   });
 
 nextBtn.addEventListener("click", async function () {
-    nextCard()
+    nextPost()
 });
 
 prevBtn.addEventListener("click", async function () {
-    prevCard()
+    prevPost()
 });
 
 revealBtn.addEventListener("click", async function () {
-    revealCard()
+    revealPost()
 });
 
 deleteBtn.addEventListener("click", async function () {
-    deleteCard()
+    deletePost()
 });
 
 randomBtn.addEventListener("click", async function () {
-    randomCard()
+    randomPost()
 });
 
-var cardIndex = -1
-var allCards = []
+var postIndex = -1
+var allPosts = []
 
-async function initializeCards() {
+async function initializePosts() {
     revealBtn.style.visibility = "hidden";
     deleteBtn.style.visibility = "hidden";
     randomBtn.style.visibility = "hidden";
-    allCards = await getCards();
+    allPosts = await getPosts();
 }
 
-initializeCards()
+initializePosts()
 
-function nextCard() {
+function nextPost() {
     revealBtn.style.visibility = "visible";
     deleteBtn.style.visibility = "visible";
     randomBtn.style.visibility = "visible";
-    cardIndex += 1
-    if (cardIndex == allCards.length) {
-        cardIndex = 0
+    postIndex += 1
+    if (postIndex == allPosts.length) {
+        postIndex = 0
     }
-    backCard.innerHTML = ""
-    frontCard.innerHTML = allCards[cardIndex].front
+    backPost.innerHTML = ""
+    frontPost.innerHTML = allPosts[postIndex].front
 }
 
-function prevCard() {
-    cardIndex -= 1
-    if (cardIndex == -1) {
-        cardIndex = allCards.length - 1
+function prevPost() {
+    postIndex -= 1
+    if (postIndex == -1) {
+        postIndex = allPosts.length - 1
     }
-    backCard.innerHTML = ""
-    frontCard.innerHTML = allCards[cardIndex].front
+    backPost.innerHTML = ""
+    frontPost.innerHTML = allPosts[postIndex].front
 }
 
-function revealCard() {
-    backCard.innerHTML = allCards[cardIndex].back
+function revealPost() {
+    backPost.innerHTML = allPosts[postIndex].back
 }
 
-async function deleteCard() {
-    await deleteCardById(allCards[cardIndex]._id)
-    allCards = await getCards()
-    backCard.innerHTML = ""
-    frontCard.innerHTML = allCards[cardIndex].front
+async function deletePost() {
+    await deletePostById(allPosts[postIndex]._id)
+    allPosts = await getPosts()
+    backPost.innerHTML = ""
+    frontPost.innerHTML = allPosts[postIndex].front
 }
 
 function randomInteger(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
-async function randomCard() {
-    cardIndex = randomInteger(0, allCards.length - 1)
-    backCard.innerHTML = ""
-    frontCard.innerHTML = allCards[cardIndex].front
+async function randomPost() {
+    postIndex = randomInteger(0, allPosts.length - 1)
+    backPost.innerHTML = ""
+    frontPost.innerHTML = allPosts[postIndex].front
 }
 
 async function apiCall(url, front=null, back=null) {
@@ -112,26 +112,26 @@ async function apiCall(url, front=null, back=null) {
     return responseData
 }
 
-async function getCards() {
-    let formattedUrl = localUrl + "/cards"
-    let allCards = await apiCall(formattedUrl)
-    return allCards
+async function getPosts() {
+    let formattedUrl = localUrl + "/posts"
+    let allPosts = await apiCall(formattedUrl)
+    return allPosts
 }
 
-async function getCardById(id) {
-    let formattedUrl = localUrl + "/card/" + id
-    let card = await apiCall(formattedUrl)
-    return card
+async function getPostById(id) {
+    let formattedUrl = localUrl + "/post/" + id
+    let post = await apiCall(formattedUrl)
+    return post
 }
 
-async function addCard(front, back) {
+async function addPost(front, back) {
     let formattedUrl = localUrl + "/new"
     let status = await apiCall(formattedUrl, front, back)
     return status
 }
 
-async function deleteCardById(id) {
+async function deletePostById(id) {
     let formattedUrl = localUrl + "/delete/" + id
-    let card = await apiCall(formattedUrl)
-    return card
+    let post = await apiCall(formattedUrl)
+    return post
 }
