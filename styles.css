@@ -10,6 +10,8 @@ body {
 }
 img {
     border-radius: 50%;
+    position: relative;
+    top: -5px;
     border: 2px solid black;
     width: 195px;
     height: 170px;
