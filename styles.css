@@ -12,9 +12,9 @@ img {
     border-radius: 50%;
     position: relative;
     top: -5px;
-    border: 2px solid black;
+    border: 3px solid black;
     width: 195px;
-    height: 170px;
+    height: 175px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -24,7 +24,7 @@ img {
     width: 50vw;
     height: 40vh;
     border-radius: 25px;
-    border: 2px solid black;
+    border: 3px solid black;
     display: grid;
     justify-content: center;
     align-items: center;
