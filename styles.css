@@ -82,7 +82,13 @@ button{
 }
 
 #newBackCard{
-    width: 350px;
+    margin-top: 5px;
+    width: 300px;
+}
+
+#submit{
+    margin-top: 15px;
+    width: 100px;
 }
 .heart-like-button {
     position: relative;
