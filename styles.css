@@ -78,7 +78,7 @@ button{
 }
 
 #newFrontCard{
-    width: 100px;
+    width: 300px;
 }
 
 #newBackCard{
@@ -107,7 +107,7 @@ button{
     width: 80px;
     height: 125px;
     border-radius: 40px 40px 0 0;
-    background-color: #574136;
+    background-color: gray;
     content: "";
     cursor: pointer;
     transition: background .4s;
@@ -122,14 +122,14 @@ button{
     width: 80px;
     height: 125px;
     border-radius: 40px 40px 0 0;
-    background-color: #574136;
+    background-color: gray;
     content: "";
     cursor: pointer;
     transition: background .4s;
   }
   .heart-like-button.liked::before,
 .heart-like-button.liked::after {
-  background-color: #d65076;
+  background-color: crimson;
 }
 .heart-like-button.liked {
   animation: liked .4s ease;
